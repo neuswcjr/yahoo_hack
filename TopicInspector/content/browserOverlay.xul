@@ -11,6 +11,8 @@
 
   <script type="application/x-javascript"
     src="chrome://topicinspector/content/browserOverlay.js" />
+  <script type="application/x-javascript"
+    src="chrome://topicinspector/content/resultsidebar.js" />
 
   <stringbundleset id="stringbundleset">
     <stringbundle id="topicinspector-string-bundle"
@@ -25,6 +27,8 @@
       </menupopup>
     </menu>
   </menubar>
+
+
 
   <vbox id="appmenuSecondaryPane">
     <menu id="menu-topicInspector2" label="&topicinspector.label;"

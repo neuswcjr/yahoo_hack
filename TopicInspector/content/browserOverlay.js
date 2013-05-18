@@ -172,5 +172,5 @@ ListItem.NewsItem.update() {
 
 ListItem.NewsItem.add(label) {
   ListItem.NewsItem.AddtoTop(label);   //don't know if having this method.if yes,then delete update()
-}  
+}
 
