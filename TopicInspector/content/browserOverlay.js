@@ -145,6 +145,7 @@ List.update() {
 
 List.add(label) {
   ListItem.AddtoTop(label);   //don't know if having this method.if yes,then delete update()
+	alert("sdf");
 }  
 
 ListItem.NewsItem.onClick() {
