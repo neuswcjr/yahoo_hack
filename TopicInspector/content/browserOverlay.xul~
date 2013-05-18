@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet type="text/css" href="chrome://global/skin/" ?>
+<?xml-stylesheet type="text/css"
+  href="chrome://topicinspector/skin/browserOverlay.css" ?>
+
+<!DOCTYPE overlay SYSTEM  "chrome://topicinspector/locale/browserOverlay.dtd">
+
+<overlay id="topicinspector-browser-overlay"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/x-javascript"
+    src="chrome://topicinspector/content/browserOverlay.js" />
+  <script type="application/x-javascript"
+    src="chrome://topicinspector/content/resultsidebar.js" />
+
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="topicinspector-string-bundle"
+      src="chrome://topicinspector/locale/browserOverlay.properties" />
+  </stringbundleset>
+
+  <menubar id="main-menubar">
+    <menu id="menu-topicInspector" label="&topicinspector.label;"
+      accesskey="&topicinspector.menu.accesskey;" insertafter="helpMenu">
+      <menupopup>
+        <menuitem id="key-openResultSidebar" observes="viewResultSidebar"/>
+      </menupopup>
+    </menu>
+  </menubar>
+
+ <toolbarpalette id="BrowserToolbarPalette">
+	  <toolbarbutton id="uusharedemo1-toolbar-button"
+    label="123"
+    tooltiptext="123"
+    oncommand="set_result_hidden()"
+		image="chrome://topicinspector/content/111.png"/>
+  </toolbarpalette>
+
+  <vbox id="appmenuSecondaryPane">
+    <menu id="menu-topicInspector2" label="&topicinspector.label;"
+      accesskey="&topicinspector.menu.accesskey;"
+      insertafter="appmenu_addons">
+      <menupopup>
+        <menuitem id="key-openResultSidebar" observes="viewResultSidebar"/>
+      </menupopup>
+    </menu>
+  </vbox>
+
+  <keyset id="keyset-main">
+    <key id="key-openResultSidebar" command="viewResultSidebar"
+         key="&resultsidebar.commandkey;" 
+         modifiers="&resultsidebar.modifierskey;" />
+  </keyset>
+
+	<broadcasterset id="mainBroadcasterSet"> 
+		  <broadcaster id="viewResultSidebar" 
+		               label="&resultsidebar.title;"
+		               autoCheck="false"
+		               type="checkbox"
+		               group="sidebar"
+		               sidebarurl="chrome://topicinspector/content/resultsidebar.xul"
+		               sidebartitle="&resultsidebar.title;"
+		               oncommand="toggleSidebar('viewResultSidebar');" />
+		</broadcasterset>
+</overlay>

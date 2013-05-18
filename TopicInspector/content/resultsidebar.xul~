@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://topicinspector/skin/browserOverlay.css" type="text/css" ?>
+<!DOCTYPE overlay SYSTEM  "chrome://topicinspector/locale/browserOverlay.dtd">
+
+
+
+<page id="resultSidebar" title="&resultsidebar.title;"
+				xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" >
+  <script type="application/x-javascript"
+    src="chrome://topicinspector/content/browserOverlay.js" />
+  <script type="application/x-javascript"
+    src="chrome://topicinspector/content/resultsidebar.js" />
+
+  <vbox flex="1" id = "result-sidebar-box">		
+
+		<hbox>
+			<label id="alable" flex="1" value = "新关键词"/>
+		</hbox>
+		<hbox>
+			<textbox  id="atextbox" value="" flex="1"/>
+			<button id="abutton" label="增加关注" style="width: 2px;" oncommand=""/>
+		</hbox>
+
+	<tree flex="1">
+  <treecols>
+      <treecol id="firstname" label="我关注的" primary="true" flex="3"/>			
+			<treecol>						
+			<toolbarbutton id="btn_refresh"
+		  label="刷新"
+		  tooltiptext="刷新"
+		  oncommand=""
+			image="chrome://topicinspector/content/111.png"/></treecol>
+  </treecols>
+
+  <treechildren>
+    <treeitem container="true" open="true">
+      <treerow>
+        <treecell label="Guys"/>
+      </treerow>
+
+      <treechildren>
+        <treeitem>
+          <treerow>
+            <treecell label="Bob"/>
+          </treerow>
+        </treeitem>
+        <treeitem>
+          <treerow>
+            <treecell label="Bob"/>
+          </treerow>
+        </treeitem> 
+      </treechildren>
+    </treeitem>
+  </treechildren>
+	</tree>
+  </vbox>
+
+
+
+
+</page>
