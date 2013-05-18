@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet type="text/css" href="chrome://global/skin/" ?>
+<?xml-stylesheet type="text/css"
+  href="chrome://TopicInspector/skin/browserOverlay.css" ?>
+
+<!DOCTYPE overlay SYSTEM
+  "chrome://TopicInspector/locale/browserOverlay.dtd">
+
+<overlay id="TopicInspector-browser-overlay"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/x-javascript"
+    src="chrome://TopicInspector/content/browserOverlay.js" />
+
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="TopicInspector-string-bundle"
+      src="chrome://TopicInspector/locale/browserOverlay.properties" />
+  </stringbundleset>
+
+  <menubar id="main-menubar">
+    <menu id="TopicInspector-hello-menu" label="&TopicInspector.hello.label;"
+      accesskey="&TopicInspector.helloMenu.accesskey;" insertafter="helpMenu">
+      <menupopup>
+        <menuitem id="TopicInspector-hello-menu-item"
+          label="&TopicInspector.hello.label;"
+          accesskey="&TopicInspector.helloItem.accesskey;"
+          oncommand="XULSchoolChrome.BrowserOverlay.sayHello(event);" />
+      </menupopup>
+    </menu>
+  </menubar>
+
+  <vbox id="appmenuSecondaryPane">
+    <menu id="TopicInspector-hello-menu-2" label="&TopicInspector.hello.label;"
+      accesskey="&TopicInspector.helloMenu.accesskey;"
+      insertafter="appmenu_addons">
+      <menupopup>
+        <menuitem id="TopicInspector-hello-menu-item-2"
+          label="&TopicInspector.hello.label;"
+          accesskey="&TopicInspector.helloItem.accesskey;"
+          oncommand="XULSchoolChrome.BrowserOverlay.sayHello(event);" />
+      </menupopup>
+    </menu>
+  </vbox>
+</overlay>
