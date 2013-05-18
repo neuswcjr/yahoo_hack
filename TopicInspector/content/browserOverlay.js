@@ -40,24 +40,29 @@ var yql_base_uri = "http://query.yahooapis.com/v1/yql";
 var yql_results = "";  
       
 // Create a YQL query to get topstories data   
-var yql_query = "select title from rss where url= "http://rss.news.yahoo.com/rss/topstories""; 
+var yql_query = "select * from rss where url= "http://rss.news.yahoo.com/rss/topstories""; 
 
 // Callback function for handling response data  
-function handler(rsp) {     
-  if(rsp.data){             
-    yql_results = rsp.data;  
-  }  
+function handler(o) {     
+  var items = o.query.results.item;   
+  var no_items=items.length;  
+  for(var i=0;i<no_items;i++){  
+    var title = items[i].title;  
+    var link = items[i].link;  
+    var pubDate = items[i].pubDate; 
+  
+    /* run the circulation to find something new
+    */
+    for (var i in TopicTable.keys) {
+      if (desc.FindValue(i)) {  //may find the same news with different topics 
+        ListItem.Bracket++; //if ListItem has this attribute?will it update instantly?
+        HashTable.NewsTable.put(title,url);
+        ListItem.NewsItem.update();  //if they can update simultaneously?
+        ListItem.NewsItem.add(); //or this one?
+      }
+    }
+  }
 }
-
-// Call YQL Web service and use YQL query  
-// to get results from web   
-runQuery(yql_base_uri,yql_query,handler);  
-  
-// Use stringify function from OpenSocial library  
-// to convert JSON to string and display the string  
-// in the div with the id 'results'  
-document.getElementById('results').innerHTML = gadgets.json.stringify(yql_results.data);  
-  
 /**
  * The main function
  */ 
@@ -71,26 +76,9 @@ TopicInspector.NewOverLay = {
   }
   
   function Query() {
-    src='http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20local.search%20where%20query%3D%22sushi%22%20and%20location%3D%22san%20francisco%2C%20ca%22&format=json&diagnostics=true&callback=top_stories'
-    /*how to get the top_stories's contents?
-    */
-    function top_stories(o){  
-      var items = o.query.results.Result;   
-      var no_items=items.length;  
-      for(var i=0;i<no_items;i++){  
-        var title = items[i].Title;  
-        var link = items[i].Url;  
-        var desc = items[i].Description;
-        /* run the circulation to find 
-        */
-        for (var i in TopicTable.keys) {
-          if (desc.FindValue(i)) {  //may find the same news with different topics 
-            ListItem.Bracket++; //if ListItem has this attribute?will it update instantly?
-            HashTable.NewsTable.put(title,url);
-            ListItem.NewsItem.update();  //if they can update simultaneously?
-            ListItem.NewsItem.add(); //or this one?
-          }
-        }
+    // Call YQL Web service and use YQL query  
+    // to get results from web   
+    runQuery(yql_base_uri,yql_query,handler);  
       }
     }    
   } 
