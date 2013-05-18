@@ -10,12 +10,6 @@ if ("undefined" == typeof(TopicInspector)) {
 
 var TIME_INTERVEL = 10*60*1000 ;  //unit by min.Can be set by user,not impletement.
 
-
- 
-      
- 
-      
-
     
 // This utility function creates the query string  
 // to be appended to the base URI of the YQL Web  
