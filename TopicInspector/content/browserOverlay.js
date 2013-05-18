@@ -49,12 +49,11 @@ function handler(o) {
   for(var i=0;i<no_items;i++){  
     var title = items[i].title;  
     var link = items[i].link;  
-    var pubDate = items[i].pubDate; 
-  
+    var pubDate = items[i].pubDate;   
     /* run the circulation to find something new
     */
     for (var i in TopicTable.keys) {
-      if (desc.FindValue(i)) {  //may find the same news with different topics 
+      if (title.indexOf(i) > 0) {  //may find the same news with different topics 
         ListItem.Bracket++; //if ListItem has this attribute?will it update instantly?
         HashTable.NewsTable.put(title,url);
         ListItem.NewsItem.update();  //if they can update simultaneously?
@@ -67,21 +66,13 @@ function handler(o) {
  * The main function
  */ 
 TopicInspector.NewOverLay = {
-  /**
-   * Do Query with Yql
-   */
+
   var d = new Date();
   if (d.getTime()%TIME_INTERVEL == 0) {
-    this.Query();
-  }
-  
-  function Query() {
     // Call YQL Web service and use YQL query  
-    // to get results from web   
-    runQuery(yql_base_uri,yql_query,handler);  
-      }
-    }    
-  } 
+    // to get results from web 
+    runQuery(yql_base_uri,yql_query,handler); 
+  }
   
   onClick : function(aEvent) {
   /* Call the sidebar 
