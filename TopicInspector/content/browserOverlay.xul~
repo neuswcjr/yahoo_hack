@@ -9,10 +9,8 @@
 <overlay id="topicinspector-browser-overlay"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <script type="application/x-javascript"
+<!--  <script type="application/x-javascript"
     src="chrome://topicinspector/content/browserOverlay.js" />
-  <script type="application/x-javascript"
-    src="chrome://topicinspector/content/resultsidebar.js" />
 
   <stringbundleset id="stringbundleset">
     <stringbundle id="topicinspector-string-bundle"
@@ -28,13 +26,7 @@
     </menu>
   </menubar>
 
- <toolbarpalette id="BrowserToolbarPalette">
-	  <toolbarbutton id="uusharedemo1-toolbar-button"
-    label="123"
-    tooltiptext="123"
-    oncommand="set_result_hidden()"
-		image="chrome://topicinspector/content/111.png"/>
-  </toolbarpalette>
+
 
   <vbox id="appmenuSecondaryPane">
     <menu id="menu-topicInspector2" label="&topicinspector.label;"

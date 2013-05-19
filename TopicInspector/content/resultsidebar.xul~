@@ -4,14 +4,12 @@
 <!DOCTYPE overlay SYSTEM  "chrome://topicinspector/locale/browserOverlay.dtd">
 
 
-
 <page id="resultSidebar" title="&resultsidebar.title;"
-				xmlns:html="http://www.w3.org/1999/xhtml"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" >
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<!--  <script type="application/x-javascript"
+    src="chrome://topicinspector/content/browserOverlay.js" /> -->
   <script type="application/x-javascript"
-    src="chrome://topicinspector/content/browserOverlay.js" />
-  <script type="application/x-javascript"
-    src="chrome://topicinspector/content/resultsidebar.js" />
+    src="chrome://topicinspector/content/resultsidebar.js" /> 
 
   <vbox flex="1" id = "result-sidebar-box">		
 
@@ -19,45 +17,64 @@
 			<label id="alable" flex="1" value = "新关键词"/>
 		</hbox>
 		<hbox>
-			<textbox  id="atextbox" value="" flex="1"/>
-			<button id="abutton" label="增加关注" style="width: 2px;" oncommand=""/>
+			<textbox  id="keword-text" value="" flex="1"/>
+			<button id="abutton" label="增加关注" style="width: 2px;" 
+				oncommand=""/>
 		</hbox>
-
-	<tree flex="1">
-  <treecols>
-      <treecol id="firstname" label="我关注的" primary="true" flex="3"/>			
-			<treecol>						
+		<hbox>
 			<toolbarbutton id="btn_refresh"
-		  label="刷新"
+		  label=""
 		  tooltiptext="刷新"
-		  oncommand=""
-			image="chrome://topicinspector/content/111.png"/></treecol>
+			image="chrome://topicinspector/content/10.png"
+		  oncommand="refresh_list();"/>
+			<toolbarbutton id="btn_delete"
+		  label=""
+		  tooltiptext="删除"
+		  oncommand="delete_selected();"
+			image="chrome://topicinspector/content/10.png"/>		
+		</hbox>
+	<tree flex="1" id="tree1" >
+   <treecols>
+      <treecol id="firstname" label="我关注的" primary="true" flex="1"/>		
+      <treecol id="firstname2" label="我关注的" primary="true" flex="1"/>						
   </treecols>
+  <treechildren context="clipmenu"  id = "tree_contents">
 
-  <treechildren>
-    <treeitem container="true" open="true">
-      <treerow>
+			
+<!--    <treeitem container="true" open="true">
+     <treerow>
         <treecell label="Guys"/>
       </treerow>
 
-      <treechildren>
+      <treechildren  >
         <treeitem>
           <treerow>
-            <treecell label="Bob"/>
+            <treecell label="Bob" id="1"/>
           </treerow>
         </treeitem>
         <treeitem>
           <treerow>
-            <treecell label="Bob"/>
+            <treecell label="Bob" id="2"/>
           </treerow>
         </treeitem> 
       </treechildren>
-    </treeitem>
-  </treechildren>
+
+    </treeitem>-->
+  </treechildren> 
 	</tree>
   </vbox>
 
+	<script>
+		
+	</script>
 
+	<popupset>
+		<menupopup id="clipmenu" position="at_pointers">
+    <menuitem label="Cut"/>
+    <menuitem label="Copy"/>
+    <menuitem label="Paste"/>
+  </menupopup>
+	</popupset>
 
 
 </page>

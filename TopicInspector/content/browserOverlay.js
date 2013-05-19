@@ -1,12 +1,14 @@
 /**
  * TopicInspector namespace.
  */
+
 if ("undefined" == typeof(TopicInspector)) {
   var TopicInspector = {};  //define here?
-  var SideBar = {};  
+  var SideBar = {};
   var TopicTable = new Array();
   var NewsTable = new Array();
 };
+
 
 TopicInspector.NewOverLay = {
   TIME_INTERVEL : 10*60*1000 ,  //unit by min.Can be set by user,not impletement.
@@ -18,7 +20,7 @@ TopicInspector.NewOverLay = {
   yql_results : "",
       
   // Create a YQL query to get topstories data   
-  yql_query : "select * from rss where url= "http://rss.news.yahoo.com/rss/topstories"",
+  yql_query : "select * from rss where url= 'http://rss.news.yahoo.com/rss/topstories'",
  
   // This utility function creates the query string  
   // to be appended to the base URI of the YQL Web  
@@ -30,6 +32,12 @@ TopicInspector.NewOverLay = {
     }      
     return parts.join('&');    
   },
+
+
+	myalert: function()
+	{
+		window.alert();
+	},
 
   // function calling the opensocial makerequest method 
   runQuery :function(ws_base_uri,query, handler) {  
@@ -72,8 +80,8 @@ TopicInspector.NewOverLay = {
   ListItem.Listopen is default,never change.
   */
   SideBar.NewLay.onButtonClick : function(aEvent) {
-    let key = Text.Text();
-    if (key == "") { } //User input nothing
+		let key = Text.value;
+    if (key == "") {alert("nothing"); } //User input nothing
     else {
       TopicTable.put(getTime().toString(),key) ;
       List.update();

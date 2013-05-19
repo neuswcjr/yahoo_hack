@@ -9,10 +9,8 @@
 <overlay id="topicinspector-browser-overlay"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <script type="application/x-javascript"
+	<script type="application/x-javascript"
     src="chrome://topicinspector/content/browserOverlay.js" />
-  <script type="application/x-javascript"
-    src="chrome://topicinspector/content/resultsidebar.js" />
 
   <stringbundleset id="stringbundleset">
     <stringbundle id="topicinspector-string-bundle"
