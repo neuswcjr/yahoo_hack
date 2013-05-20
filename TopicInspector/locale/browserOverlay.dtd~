@@ -1,0 +1,7 @@
+<!ENTITY topicinspector.label            "Topic Inspector">
+<!ENTITY topicinspector.menu.accesskey    "l">
+<!ENTITY topicinspector.item.accesskey    "H">
+
+<!ENTITY resultsidebar.title "Result">
+<!ENTITY resultsidebar.commandkey "E">
+<!ENTITY resultsidebar.modifierskey "shift accel">

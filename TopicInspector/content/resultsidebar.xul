@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://topicinspector/skin/browserOverlay.css" type="text/css" ?>
+<!DOCTYPE overlay SYSTEM  "chrome://topicinspector/locale/browserOverlay.dtd">
+
+
+<page id="resultSidebar" title="&resultsidebar.title;"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<!--  <script type="application/x-javascript"
+    src="chrome://topicinspector/content/browserOverlay.js" /> -->
+  <script type="application/x-javascript"
+    src="chrome://topicinspector/content/resultsidebar.js" /> 
+
+  <vbox flex="1" id = "result-sidebar-box">		
+
+		<hbox>
+			<label id="alable" flex="1" value = "新关键词"/>
+		</hbox>
+		<hbox>
+			<textbox  id="keword-text" value="" flex="1"/>
+			<button id="abutton" label="增加关注" style="width: 2px;" 
+				oncommand=""/>
+		</hbox>
+		<hbox>
+			<toolbarbutton id="btn_refresh"
+		  label=""
+		  tooltiptext="刷新"
+			image="chrome://topicinspector/content/10.png"
+		  oncommand="refresh_list();"/>
+			<toolbarbutton id="btn_delete"
+		  label=""
+		  tooltiptext="删除"
+		  oncommand="delete_selected();"
+			image="chrome://topicinspector/content/10.png"/>		
+		</hbox>
+	<tree flex="1" id="tree1" >
+   <treecols>
+      <treecol id="firstname" label="我关注的" primary="true" flex="1"/>					
+  </treecols>
+  <treechildren context="clipmenu"  id = "tree_contents">
+
+			
+<!--    <treeitem container="true" open="true">
+     <treerow>
+        <treecell label="Guys"/>
+      </treerow>
+
+      <treechildren  >
+        <treeitem>
+          <treerow>
+            <treecell label="Bob" id="1"/>
+          </treerow>
+        </treeitem>
+        <treeitem>
+          <treerow>
+            <treecell label="Bob" id="2"/>
+          </treerow>
+        </treeitem> 
+      </treechildren>
+
+    </treeitem>-->
+  </treechildren> 
+	</tree>
+  </vbox>
+
+	<script>
+		
+	</script>
+
+	<popupset>
+		<menupopup id="clipmenu" position="at_pointers">
+    <menuitem label="Cut"/>
+    <menuitem label="Copy"/>
+    <menuitem label="Paste"/>
+  </menupopup>
+	</popupset>
+
+
+</page>

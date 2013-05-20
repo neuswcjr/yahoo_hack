@@ -2,4 +2,6 @@ content   topicinspector                content/
 skin      topicinspector  classic/1.0   skin/
 locale    topicinspector  en-US         locale/en-US/
 
-overlay chrome://browser/content/browser.xul  chrome://xulschoolhello/content/browserOverlay.xul
+
+overlay chrome://browser/content/browser.xul  chrome://topicinspector/content/browserOverlay.xul
+
