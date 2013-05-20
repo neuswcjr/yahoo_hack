@@ -111,7 +111,7 @@ TopicInspctor.BrowserOverlay= {
     let key = Text.value;
     if (key == "") {alert("nothing"); } //User input nothing
     else {
-      Hashtable.TopicTable.put(getTime().toString(),key) ;
+      TopicTable.put(getTime().toString(),key) ;
       TopicInspctor.List.update();
       TopicInspctor.List.add(key); // select one 
     }
@@ -128,13 +128,13 @@ TopicInspctor.BrowserOverlay= {
     Menu.Item = {'delete'};  // other items like "move up" "move down" "top" can impletement later
     Menu.Pop();
     Menu.onClick('delete') {
-      Hashtable.TopicTable.remove(ListItem.Text());
+      TopicTable.remove(ListItem.Text());
     }
   },
 
   TopicInspctor.List.update() : function {
     var Id = 0;
-    for (var i in Hashtable.TopicTable) {
+    for (var i in TopicTable) {
       var index = Id++;
       var label = i;
       ListItem.newItem(index,label);
@@ -146,7 +146,7 @@ TopicInspctor.BrowserOverlay= {
   }   ,
 
   ListItem.NewsItem.onClick()  : function{
-    var url = Hashtable.NewsTable(NewsItem.Text());
+    var url = NewsTable(NewsItem.Text());
     send url to httpget;
     NewsTable.remove(NewsItem.Text());  //decide the title must be key
     NewsItem.delete;
@@ -154,7 +154,7 @@ TopicInspctor.BrowserOverlay= {
 
   ListItem.NewsItem.update : function() {
     var Id = 0;
-    for (var i in Hashtable.NewsTable) {
+    for (var i in NewsTable) {
       var index = Id++;
       var label = i;
       ListItem.NewsItem.newItem(index,label);  //update but not ListItem open,so ok.
