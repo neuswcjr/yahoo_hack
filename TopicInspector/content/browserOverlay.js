@@ -3,16 +3,24 @@
  */
 if ("undefined" == typeof(TopicInspector)) {
   var TopicInspector = {};  //define here?
-  var SideBar = {};  
-  var TopicTable = new Array();
-  var NewsTable = new Array();
+  var TopicTable = new Hashtable();
+  var NewsTable = new Hashtable();
 };
 
+var TIME_INTERVEL = 10*60*1000 ;  //unit by min.Can be set by user,not impletement.
+
+// Base URI for Web service  
+var yql_base_uri = "http://query.yahooapis.com/v1/yql";
+  
+      
+// Create a YQL query to get topstories data   
+var yql_query  ="select * from rss where url= "http://rss.news.yahoo.com/rss/topstories"" ;
 TopicInspector.NewOverLay = {
   TIME_INTERVEL : 10*60*1000 ,  //unit by min.Can be set by user,not impletement.
 
   // Base URI for Web service  
   yql_base_uri : "http://query.yahooapis.com/v1/yql",
+  
   // Create a variable to make results available  
   // in the global namespace  
   yql_results : "",
@@ -48,26 +56,26 @@ TopicInspector.NewOverLay = {
     for(var i=0;i<no_items;i++){  
       var title = items[i].title;  
       var link = items[i].link;  
-      var pubDate = items[i].pubDate;   
+      var pubDate = items[i].pubDate; 
+      var date = new Date(pubDate);  
       /* run the circulation to find something new
       */
-      for (var i in TopicTable.keys) {
-        if (title.indexOf(i) > 0) {  //may find the same news with different topics 
-          ListItem.Bracket++; //if ListItem has this attribute?will it update instantly?
-          HashTable.NewsTable.put(title,url);
-          ListItem.NewsItem.update();  //if they can update simultaneously?
-          ListItem.NewsItem.add(); //or this one?
+      //for (var i in Hashtable.TopicTable.keys()) {
+        //if (title.indexOf(i) > 0 & data.getTime() > new Date().getTime()-TIME_INTERVEL ) {  //may find the same news with different topics 
+          //ListItem.Bracket++; //if ListItem has this attribute?will it update instantly?
+          HashTable.NewsTable.put(title,link);
+          //ListItem.NewsItem.update();  //if they can update simultaneously?
+          //ListItem.NewsItem.add(); //or this one?
         }
       }
     }
-  },
-  
+  }
   onClick : function(aEvent) {
   /* Call the sidebar 
   */
     SideBar.NewLay.alert() ;
   },
-  /*only one button label is "Add"
+  /*only one button whose label is "Add"
   ListItem label is key,time is value
   ListItem.Listopen is default,never change.
   */
@@ -75,7 +83,7 @@ TopicInspector.NewOverLay = {
     let key = Text.Text();
     if (key == "") { } //User input nothing
     else {
-      TopicTable.put(getTime().toString(),key) ;
+      Hashtable.TopicTable.put(getTime().toString(),key) ;
       List.update();
       List.add(key); // select one 
     }
@@ -93,13 +101,13 @@ TopicInspector.NewOverLay = {
     Menu.Item = {'delete'};  // other items like "move up" "move down" "top" can impletement later
     Menu.Pop();
     Menu.onClick('delete') {
-      TopicTable.remove(ListItem.Text());
+      Hashtable.TopicTable.remove(ListItem.Text());
     }
   },
 
   List.update :function() {
     var Id = 0;
-    for (var i in TopicTable) {
+    for (var i in Hashtable.TopicTable) {
       var index = Id++;
       var label = i;
       ListItem.newItem(index,label);
@@ -108,19 +116,18 @@ TopicInspector.NewOverLay = {
 
   List.add :function(label) {
     ListItem.AddtoTop(label);   //don't know if having this method.if yes,then delete update()
-	alert("sdf");
   }  ,
 
   ListItem.NewsItem.onClick :function() {
-    var url = NewsTable(NewsItem.Text());
+    var url = Hashtable.NewsTable(NewsItem.Text());
     send url to httpget;
-    NewsTable.remove(NewsItem.Text());  //decide the title must be key
+    Hashtable.NewsTable.remove(NewsItem.Text());  //decide the title must be key
     NewsItem.delete;
   },
 
   ListItem.NewsItem.update :function() {
     var Id = 0;
-    for (var i in NewsTable) {
+    for (var i in Hashtable.NewsTable) {
       var index = Id++;
       var label = i;
       ListItem.NewsItem.newItem(index,label);  //update but not ListItem open,so ok.
@@ -129,19 +136,19 @@ TopicInspector.NewOverLay = {
 
   ListItem.NewsItem.add :function(label) {
     ListItem.NewsItem.AddtoTop(label);   //don't know if having this method.if yes,then delete update()
-  } 
+  }   
+
 };
 
 /* function run here
+Call YQL Web service and use YQL query  
+to get results from web 
 */
-setInterval("showTime()", 5000);
-
-if (new Date().getTime()%TopicInspector.NewOverLay.TIME_INTERVEL == 0) {
-  // Call YQL Web service and use YQL query  
-  // to get results from web 
-  TopicInspector.NewOverLay.runQuery(TopicInspector.NewOverLay.yql_base_uri,TopicInspector.NewOverLay.yql_query,TopicInspector.NewOverLay.handler); 
+setInterval("TopicInspector.NewOverLay.runQuery(yql_base_uri,yql_query,TopicInspector.NewOverLay.handler)", TopicInspector.NewOverLay.TIME_INTERVEL);
+for (var i in TopicTable.keys();i++) {
+ 
+window.alert(i);
 }
-
 
   
  
